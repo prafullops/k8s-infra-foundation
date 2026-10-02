@@ -11,4 +11,10 @@ Bootstrapping local multi-environments kubernetes cluster using kind and fluxcd 
 3. Scaling through horizontal pod autoscaling
 4. support for onboading new teams/projects to cluster with minimul efforts.
 5. Complete observability and monitoring: kube-prometheus-stack for metrics, ELK stack + filebeat for logs and Otel + jaeger for traces.
-6. namespace based 
+6. namespace based permissions boundry
+7. resource quota, requests, limits.
+8. fluxcd based gitops delivery setup for infrastructre as well as for applications.
+
+## Tech Stack
+
+Kubernetes, kind, bash, fluxcd, helm, kustomize, grafana, prometheus, openTelemetry, jaeger, filebeat, kibana, elastic search.  
