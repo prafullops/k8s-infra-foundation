@@ -25,7 +25,11 @@ Kubernetes, kind, bash, fluxcd, helm, kustomize, grafana, prometheus, openTeleme
 Using lightweight k3d to spin up kubernetes cluster. k3d version used is v5.6.3
 
 Pre-requisites:
-    1. Install Docker for your environment from here: ([Install Docker](https://docs.docker.com/engine/install/))
-    2. Install kubectl from her here: ([Install Kubectl](https://kubernetes.io/docs/tasks/tools/))
+    1. Docker is required by k3d to run an kubernetes cluster: ([Install Docker](https://docs.docker.com/engine/install/))
+    2. Kubectl helps us communicate with kubernetes api server: ([Install Kubectl](https://kubernetes.io/docs/tasks/tools/))
+    3. For this project Flux is backbone of GitOps driven architecture: ([Install Flux CLI](https://fluxcd.io/flux/installation/)) 
+
+Note: Script is created to run on linux based environment. So run it on wsl or machine with linux operating system with bash shell and awk binaries installed.
 steps:
-    1. 
+    1. Before running script add your user to docker group to prevent any permission related issues:
+        run: sudo usermod -aG docker $USER
