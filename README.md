@@ -18,3 +18,14 @@ Bootstrapping local multi-environments kubernetes cluster using kind and fluxcd 
 ## Tech Stack
 
 Kubernetes, kind, bash, fluxcd, helm, kustomize, grafana, prometheus, openTelemetry, jaeger, filebeat, kibana, elastic search.  
+
+
+## Setup
+
+Using lightweight k3d to spin up kubernetes cluster. k3d version used is v5.6.3
+
+Pre-requisites:
+    1. Install Docker for your environment from here: ([Install Docker](https://docs.docker.com/engine/install/))
+    2. Install kubectl from her here: ([Install Kubectl](https://kubernetes.io/docs/tasks/tools/))
+steps:
+    1. 
