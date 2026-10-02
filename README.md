@@ -17,7 +17,7 @@ Bootstrapping local multi-environments kubernetes cluster using kind and fluxcd 
 
 ## Tech Stack
 
-Kubernetes, kind, bash, fluxcd, helm, kustomize, grafana, prometheus, openTelemetry, jaeger, filebeat, kibana, elastic search.  
+Kubernetes, k3d, bash, fluxcd, helm, kustomize, grafana, prometheus, openTelemetry, jaeger, filebeat, kibana, elastic search.  
 
 
 ## Setup
@@ -33,3 +33,12 @@ Note: Script is created to run on linux based environment. So run it on wsl or m
 steps:
     1. Before running script add your user to docker group to prevent any permission related issues:
         run: sudo usermod -aG docker $USER
+    2. Add environment variables to your shell.
+        Generate github pat token with read write access to github and export it to GITHUB_TOKEN variable in your shell.
+        run: export GITHUB_TOKEN=<your pat token>
+             export GITHUB_USER=<your github username>
+             export GITHUB_Email=<your github email>
+             export GITHUB_BRANCH=<your github branch name to push flux manifests>
+             export GITHUB_REPO_NAME=<repository where to commit flux manifest for self reconcilation>
+             export ENVIRONMENT_NAME=<your environment name eg, test, prod>
+             export FLUX_MANIFESTS_PATH=<path in repository to store manifests for flux>
