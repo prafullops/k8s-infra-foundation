@@ -4,6 +4,11 @@
 
 echo "Starting cluster bootstraping process..."
 echo "Setting up environment variables..."
+
+ENVIRONMENT_NAME=$(echo $ENVIRONMENT_NAME | awk '{print tolower($0)}')
+GITHUB_BRANCH=${GITHUB_BRANCH:-main}
+FLUX_MANIFESTS_PATH=${FLUX_MANIFESTS_PATH:-'./clusters/$ENVIRONMENT_NAME/'}
+
 if [[ -z $ENVIRONMENT_NAME ]]; then
     read -p "Enter Environment Name(test, prod): " ENVIRONMENT_NAME
 fi
@@ -24,12 +29,13 @@ if [[ -z $GITHUB_REPO_NAME ]]; then
     read -p  "Enter Github Repository Name : " GITHUB_REPO_NAME
 fi
 
+if [[ -z $GITHUB_BRANCH ]]; then
+    read -p  "Enter GITHUB_BRANCH (default: main): " GITHUB_BRANCH
+fi
+
 if [[ -z $FLUX_MANIFESTS_PATH ]]; then
     read -p "Enter Path for Flux Manifests (default:./clusters/$ENVIRONMENT_NAME/ ): " FLUX_MANIFESTS_PATH
 fi
-
-ENVIRONMENT_NAME=$(echo $ENVIRONMENT_NAME | awk '{print tolower($0)}')
-
 
 if [[ -z $ENVIRONMENT_NAME ]] || [[ $ENVIRONMENT_NAME != "test" ]] && [[ $ENVIRONMENT_NAME != "prod" ]]; then
     echo "Invalid environment. Please enter 'test' or 'prod'."
@@ -59,6 +65,9 @@ else
     flux check --pre
     echo ""
     echo "Bootstraping flux..."
-    flux bootstrap github
+    flux bootstrap github --owner=$GITHUB_USER --repository=$GITHUB_REPO_NAME --branch=$GITHUB_BRANCH --path=$FLUX_MANIFESTS_PATH --personal --token-auth
+    echo ""
+    echo "Flux bootstrap completed successfully!"
+    echo "Run 'flux check' to verify the installation and run 'flux get all -A'" 
 fi
 
